@@ -1,11 +1,7 @@
 'use client';
 
-import {
-  PrimaryButton,
-  SecondaryButton,
-} from '@/components/atoms/button/Button';
-import MovieBanner from '@/components/molecules/movieBanner/MovieBanner';
-import { Container } from '@mui/material';
+import MovieCard from '@/components/molecules/movieCard/MovieCard';
+import MovieBanners from '@/components/organisms/movieBanners/MovieBanners';
 
 export default function Home() {
   return <></>;
