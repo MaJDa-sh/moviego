@@ -1,7 +1,7 @@
 import { Rating } from '@mui/material';
 import React from 'react';
 
-const Card = () => {
+const MovieCard = () => {
   return (
     <div
       className="card 
@@ -100,4 +100,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default MovieCard;
