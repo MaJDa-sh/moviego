@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@import '../../variables';
+
+body {
+  color: #ffffff !important;
+  background: #171717 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.underline {
+  position: relative;
+  text-decoration: none;
+  &::after {
+    content: '';
+    width: 3rem;
+    height: 1rem;
+    background: $primary;
+    z-index: -1;
+
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+  }
+}

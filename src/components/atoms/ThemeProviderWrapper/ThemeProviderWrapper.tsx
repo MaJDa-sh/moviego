@@ -2,15 +2,11 @@
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import { purple, green } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
     primary: {
       main: '#D214AF',
-    },
-    secondary: {
-      main: '#FFC9F5',
     },
   },
   typography: {

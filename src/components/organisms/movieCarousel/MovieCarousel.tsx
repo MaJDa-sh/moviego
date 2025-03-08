@@ -3,7 +3,6 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import MovieCard from '@/components/molecules/movieCard/MovieCard';
-import { Container } from '@mui/material';
 
 const MovieCarousel = () => {
   const responsive = {
@@ -29,14 +28,20 @@ const MovieCarousel = () => {
     },
     sm: {
       breakpoint: { max: 768, min: 0 },
-      partialVisibilityGutter: 80,
+      partialVisibilityGutter: 10,
       items: 1,
     },
   };
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col justify-center mt-16">
+      <div className="w-10/12 mx-auto">
+        <p className="text-3xl mb-10 w-fit underline font-extralight">
+          Popular
+        </p>
+      </div>
+
       <Carousel
-        containerClass="w-10/12"
+        containerClass="w-10/12 mx-auto"
         responsive={responsive}
         partialVisible={true}
         infinite={true}

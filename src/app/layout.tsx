@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ThemeProviderWrapper } from '@/components/atoms/ThemeProviderWrapper/ThemeProviderWrapper';
+import './globals.scss';
 import './globals.css';
 import { Inter } from 'next/font/google';
 

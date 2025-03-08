@@ -11,7 +11,7 @@ const PrimaryButton = ({ children }: ButtonProps) => {
     <Button
       sx={{
         borderRadius: 20,
-        px: 4,
+        px: 2,
         py: 1,
       }}
       variant="contained"
@@ -30,7 +30,7 @@ const SecondaryButton = ({ children }: ButtonProps) => {
       sx={{
         borderWidth: 2,
         borderRadius: 20,
-        px: 4,
+        px: 2,
         py: 1,
       }}
     >
