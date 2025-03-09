@@ -3,8 +3,13 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import MovieCard from '@/components/molecules/movieCard/MovieCard';
+import { Movie } from '@/types/movie';
 
-const MovieCarousel = () => {
+interface MovieCarouselProps {
+  movies: Movie[];
+}
+
+const MovieCarousel = ({ movies }: MovieCarouselProps) => {
   const responsive = {
     xxl: {
       breakpoint: { max: 4000, min: 1536 },
@@ -34,26 +39,28 @@ const MovieCarousel = () => {
   };
   return (
     <div className="flex flex-col justify-center mt-16">
-      <div className="w-10/12 mx-auto">
+      <div className="w-10/12 mx-auto max-w-512">
         <p className="text-3xl mb-10 w-fit underline font-extralight">
           Popular
         </p>
       </div>
 
       <Carousel
-        containerClass="w-10/12 mx-auto"
+        containerClass="w-10/12 mx-auto max-w-512"
         responsive={responsive}
         partialVisible={true}
         infinite={true}
         ssr={false}
       >
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        {movies.map((movie) => (
+          <MovieCard
+            title={movie.title}
+            overview={movie.overview}
+            poster_path={movie.poster_path}
+            vote_average={movie.vote_average}
+            genre_ids={movie.genre_ids.slice(0, 2)}
+          />
+        ))}
       </Carousel>
     </div>
   );

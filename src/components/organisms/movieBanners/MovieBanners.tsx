@@ -1,7 +1,12 @@
 import { Container } from '@mui/material';
 import MovieBanner from '@/components/molecules/movieBanner/MovieBanner';
+import { Movie } from '@/types/movie';
 
-const MovieBanners = () => {
+interface MovieBannersProps {
+  movies: Movie[];
+}
+
+const MovieBanners = ({ movies }: MovieBannersProps) => {
   return (
     <Container
       maxWidth={false}
@@ -10,24 +15,31 @@ const MovieBanners = () => {
                 lg:grid-cols-3 
                 mx-0! 
                 px-0!
+                max-w-512
                 md:mx-auto!"
     >
       <MovieBanner
         className="lg:skew-y-6 
                   md:col-span-2 
                   lg:col-span-1"
-        img="https://image.tmdb.org/t/p/w1280_and_h720_face/1409Us5Om7hk3l6xUmJwNcPadwE.jpg"
+        img={`https://image.tmdb.org/t/p/w1280_and_h720_face/${movies[0].backdrop_path}`}
+        title={movies[0].title}
+        vote_average={movies[0].vote_average}
       />
       <MovieBanner
         className="translate-y-0 
                   lg:translate-y-8 
                   md:skew-y-3 
                   lg:skew-y-0"
-        img="https://image.tmdb.org/t/p/w1280_and_h720_face/hR6jFx8orz2RxBAY1IWjfXpkycW.jpg"
+        img={`https://image.tmdb.org/t/p/w1280_and_h720_face/${movies[1].backdrop_path}`}
+        title={movies[1].title}
+        vote_average={movies[1].vote_average}
       />
       <MovieBanner
         className="md:-skew-y-6"
-        img="https://image.tmdb.org/t/p/w1280_and_h720_face/oMcfxf3UeXAlAuAqNQsZWefiTr2.jpg"
+        img={`https://image.tmdb.org/t/p/w1280_and_h720_face/${movies[2].backdrop_path}`}
+        title={movies[2].title}
+        vote_average={movies[2].vote_average}
       />
     </Container>
   );

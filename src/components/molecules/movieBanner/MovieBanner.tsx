@@ -3,9 +3,16 @@ import { Container, Rating } from '@mui/material';
 interface MovieBannerProps {
   className?: string;
   img: string;
+  title: string;
+  vote_average: number;
 }
 
-const MovieBanner = ({ className, img }: MovieBannerProps) => {
+const MovieBanner = ({
+  className,
+  img,
+  title,
+  vote_average,
+}: MovieBannerProps) => {
   return (
     <Container
       className={`
@@ -37,12 +44,12 @@ const MovieBanner = ({ className, img }: MovieBannerProps) => {
                   w-1/2 
                   text-balance "
       >
-        Star Wars: Episode IV – A New Hope
+        {title}
       </p>
       <Rating
         className="drop-shadow-[0_1px_0px_rgba(255,255,255,1)]"
         name="half-rating"
-        defaultValue={2.5}
+        defaultValue={Math.round(vote_average) / 2}
         precision={0.5}
         readOnly
       />
