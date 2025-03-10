@@ -5,6 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import MovieCard from '@/components/molecules/movieCard/MovieCard';
 import { Movie } from '@/types/movie';
 import { useGenresStore } from '@/store/useGenresStore';
+import { useRouter } from 'next/navigation';
 
 interface MovieCarouselProps {
   movies: Movie[];
@@ -41,6 +42,7 @@ const responsive = {
 
 const MovieCarousel = ({ movies, genre_id }: MovieCarouselProps) => {
   const genres = useGenresStore((state) => state.genres);
+  const router = useRouter();
 
   const genre = genres[genre_id];
 
@@ -61,6 +63,9 @@ const MovieCarousel = ({ movies, genre_id }: MovieCarouselProps) => {
       >
         {movies.map((movie) => (
           <MovieCard
+            onClick={() => {
+              router.push(`/movie/${movie.id}`);
+            }}
             title={movie.title}
             overview={movie.overview}
             poster_path={movie.poster_path}

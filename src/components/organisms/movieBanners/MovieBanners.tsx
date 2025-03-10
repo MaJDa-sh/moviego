@@ -1,12 +1,14 @@
 import { Container } from '@mui/material';
 import MovieBanner from '@/components/molecules/movieBanner/MovieBanner';
 import { Movie } from '@/types/movie';
+import { useRouter } from 'next/navigation';
 
 interface MovieBannersProps {
   movies: Movie[];
 }
 
 const MovieBanners = ({ movies }: MovieBannersProps) => {
+  const router = useRouter();
   return (
     <Container
       maxWidth={false}
@@ -19,6 +21,9 @@ const MovieBanners = ({ movies }: MovieBannersProps) => {
                 md:mx-auto!"
     >
       <MovieBanner
+        onClick={() => {
+          router.push(`/movie/${movies[0].id}`);
+        }}
         className="lg:skew-y-6 
                   md:col-span-2 
                   lg:col-span-1"
@@ -27,6 +32,9 @@ const MovieBanners = ({ movies }: MovieBannersProps) => {
         vote_average={movies[0].vote_average}
       />
       <MovieBanner
+        onClick={() => {
+          router.push(`/movie/${movies[0].id}`);
+        }}
         className="translate-y-0 
                   lg:translate-y-8 
                   md:skew-y-6 
@@ -36,6 +44,9 @@ const MovieBanners = ({ movies }: MovieBannersProps) => {
         vote_average={movies[1].vote_average}
       />
       <MovieBanner
+        onClick={() => {
+          router.push(`/movie/${movies[0].id}`);
+        }}
         className="md:-skew-y-6"
         img={`https://image.tmdb.org/t/p/w1280_and_h720_face/${movies[2].backdrop_path}`}
         title={movies[2].title}

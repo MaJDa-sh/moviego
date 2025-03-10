@@ -3,6 +3,7 @@
 import { Movie } from '@/types/movie';
 import { Container } from '@mui/material';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
 interface ListedMoviesProps {
   movies: Movie[];
@@ -17,6 +18,7 @@ const MovieCard = dynamic(
 );
 
 const ListedMovies = ({ movies, searchResult }: ListedMoviesProps) => {
+  const router = useRouter();
   return (
     <div className="flex flex-col justify-center mt-16">
       <div className="w-10/12 mx-auto max-w-512">
@@ -31,6 +33,9 @@ const ListedMovies = ({ movies, searchResult }: ListedMoviesProps) => {
       >
         {movies.map((movie, key) => (
           <MovieCard
+            onClick={() => {
+              router.push(`/movie/${movie.id}`);
+            }}
             key={key}
             title={movie.title}
             overview={movie.overview}

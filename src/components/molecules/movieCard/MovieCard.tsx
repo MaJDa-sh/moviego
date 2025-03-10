@@ -1,6 +1,6 @@
 import { useGenresStore } from '@/store/useGenresStore';
 import { Rating } from '@mui/material';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, MouseEventHandler } from 'react';
 
 interface MovieCardProps {
   title: string;
@@ -8,6 +8,7 @@ interface MovieCardProps {
   poster_path: string;
   vote_average: number;
   genre_ids: number[];
+  onClick: MouseEventHandler<HTMLDivElement>;
 }
 
 const LazyMovieCard = ({
@@ -16,6 +17,7 @@ const LazyMovieCard = ({
   poster_path,
   vote_average,
   genre_ids,
+  onClick,
 }: MovieCardProps) => {
   const genres = useGenresStore((state) => state.genres);
   const [isVisible, setIsVisible] = useState(false);
@@ -44,6 +46,7 @@ const LazyMovieCard = ({
 
   return (
     <div
+      onClick={onClick}
       ref={cardRef}
       className={`card cursor-pointer h-[400px] w-[280px] group gap-[0.5rem] rounded-[1.5rem] relative flex justify-end flex-col px-2 py-4 z-[1] overflow-hidden ${
         isVisible ? 'opacity-100' : 'opacity-0'

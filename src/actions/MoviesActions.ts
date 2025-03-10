@@ -44,3 +44,8 @@ export const searchMovies = async (query: string): Promise<MovieList> => {
   });
   return data;
 };
+
+export const getMovie = async (id: number): Promise<MovieList> => {
+  const { data } = await axiosInstance.get(`/movie${id}`);
+  return data;
+};
