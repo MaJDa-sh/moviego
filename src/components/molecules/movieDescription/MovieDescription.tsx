@@ -39,14 +39,16 @@ const MovieDescription = ({
         <p className="text-3xl md:text-6xl font-black">{title}</p>
         <p className="font-extralight">
           <span className="block md:flex pb-2">{release_date}</span>{' '}
-          {genres.map((genre, i) => (
-            <span
-              className="py-1 px-2 rounded-xl border border-primary mx-1"
-              key={i}
-            >
-              {genre.name}
-            </span>
-          ))}{' '}
+          <span className="flex flex-wrap">
+            {genres.map((genre, i) => (
+              <span
+                className="py-1 px-2 rounded-xl border border-primary mx-1"
+                key={i}
+              >
+                {genre.name}
+              </span>
+            ))}{' '}
+          </span>
           <span className="block md:flex pt-2">
             {Math.floor(runtime / 60)}h {runtime % 60}m
           </span>
