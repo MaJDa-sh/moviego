@@ -63,20 +63,7 @@ export default function SelectComponent<T extends string | string[]>({
         value={selectedData}
         onChange={handleChange}
         input={
-          <OutlinedInput
-            label={singleSelect ? 'Sort By' : 'Select Genres'}
-            sx={{
-              color: 'white',
-              borderRadius: 0,
-              '& .MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
-              '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white',
-              },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'primary.main',
-              },
-            }}
-          />
+          <OutlinedInput label={singleSelect ? 'Sort By' : 'Select Genres'} />
         }
         renderValue={(selected) =>
           singleSelect ? (
@@ -105,10 +92,6 @@ export default function SelectComponent<T extends string | string[]>({
           )
         }
         MenuProps={MenuProps}
-        sx={{
-          color: 'white',
-          '& .MuiSelect-icon': { color: 'white' },
-        }}
       >
         {Object.entries(data).map(([id, name]) => (
           <MenuItem key={id} value={id}>

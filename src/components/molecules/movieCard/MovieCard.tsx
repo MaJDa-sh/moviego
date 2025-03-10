@@ -1,3 +1,4 @@
+import StarRating from '@/components/atoms/starRating/StarRating';
 import { useGenresStore } from '@/store/useGenresStore';
 import { Rating } from '@mui/material';
 import { useState, useEffect, useRef, MouseEventHandler } from 'react';
@@ -8,7 +9,7 @@ interface MovieCardProps {
   poster_path: string;
   vote_average: number;
   genre_ids: number[];
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 const LazyMovieCard = ({
@@ -68,13 +69,7 @@ const LazyMovieCard = ({
             </div>
             <div className="flex justify-left items-center h-fit w-full gap-[1.5rem]">
               <div className="w-fit h-fit flex justify-left gap-[0.5rem]">
-                <Rating
-                  className="drop-shadow-[0_1px_0px_rgba(0,0,0,1)]"
-                  name="half-rating"
-                  defaultValue={Math.round(vote_average) / 2}
-                  precision={0.5}
-                  readOnly
-                />
+                <StarRating voteAvarage={vote_average} />
               </div>
             </div>
             <div className="flex justify-center items-center h-fit w-fit gap-[0.5rem] me-5">

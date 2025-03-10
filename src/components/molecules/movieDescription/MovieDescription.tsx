@@ -1,5 +1,6 @@
 'use client';
 
+import StarRating from '@/components/atoms/starRating/StarRating';
 import { Genre } from '@/types/movie';
 import { Container, Rating } from '@mui/material';
 
@@ -50,13 +51,7 @@ const MovieDescription = ({
             {Math.floor(runtime / 60)}h {runtime % 60}m
           </span>
         </p>
-        <Rating
-          className="drop-shadow-[0_1px_0px_rgba(0,0,0,1)]"
-          name="half-rating"
-          defaultValue={Math.round(vote_average) / 2}
-          precision={0.5}
-          readOnly
-        />
+        <StarRating voteAvarage={vote_average} />
         <div className="border-l-2 ps-4 border-primary">
           <p className="font-black text-gray-400 mb-4">{tagline}</p>
           <p className="text-balance font-light">{overview}</p>

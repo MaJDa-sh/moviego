@@ -19,8 +19,6 @@ const LoadingMovieBanners = () => {
                   animate-pulse
                   bg-dark
                   lg:col-span-1"
-        title=""
-        vote_average={0}
       />
       <MovieBanner
         className="translate-y-0 
@@ -29,15 +27,11 @@ const LoadingMovieBanners = () => {
                   animate-pulse
                   bg-dark
                   lg:skew-y-0"
-        title=""
-        vote_average={0}
       />
       <MovieBanner
         className="md:-skew-y-6 
                   animate-pulse
                   bg-dark"
-        title=""
-        vote_average={0}
       />
     </Container>
   );

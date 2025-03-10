@@ -25,6 +25,14 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="description"
+          content="Discover trending movies, search by genre, and explore new releases with MovieGo."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>MovieGo</title>
+      </head>
       <body className="antialiased">
         <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
       </body>

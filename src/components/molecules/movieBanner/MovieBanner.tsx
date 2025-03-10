@@ -1,11 +1,12 @@
+import StarRating from '@/components/atoms/starRating/StarRating';
 import { Container, Rating } from '@mui/material';
 import { MouseEventHandler } from 'react';
 
 interface MovieBannerProps {
   className?: string;
   img?: string;
-  title: string;
-  vote_average: number;
+  title?: string;
+  vote_average?: number;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
@@ -51,13 +52,7 @@ const MovieBanner = ({
       >
         {title}
       </p>
-      <Rating
-        className="drop-shadow-[0_1px_0px_rgba(255,255,255,1)]"
-        name="half-rating"
-        defaultValue={Math.round(vote_average) / 2}
-        precision={0.5}
-        readOnly
-      />
+      {vote_average && <StarRating voteAvarage={vote_average} />}
     </Container>
   );
 };
