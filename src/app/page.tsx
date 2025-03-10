@@ -1,49 +1,18 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Container } from '@mui/material';
 import {
   getTrendingMovies,
   getMoviesByGenre,
   searchMovies,
 } from '../actions/MoviesActions';
 import { MovieList } from '@/types/movie';
-import SearchBar from '@/components/atoms/searchBar/SearchBar';
-import SelectComponent from '@/components/atoms/select/Select';
-import {
-  PrimaryButton,
-  SecondaryButton,
-} from '@/components/atoms/button/Button';
-import { useGenresStore } from '@/store/useGenresStore';
-import ListedMovies from '@/components/organisms/listedMovies/ListedMovies';
-import MovieCarousel from '@/components/organisms/movieCarousel/MovieCarousel';
-import LoadingMovieBanners from '@/components/organisms/movieBanners/LoadingMovieBanners';
-import LoadingBar from '@/components/atoms/loadingBar/LoadingBar';
-
-const MovieBanners = dynamic(
-  () => import('@/components/organisms/movieBanners/MovieBanners'),
-  {
-    ssr: false,
-    loading: () => <LoadingMovieBanners />,
-  },
-);
-
-const sortingData = {
-  'popularity.asc': 'Popularity ▲',
-  'popularity.desc': 'Popularity ▼',
-  'title.asc': 'Title ▲',
-  'title.desc': 'Title ▼',
-  'vote_average.asc': 'Rating ▲',
-  'vote_average.desc': 'Rating ▼',
-  'primary_release_date.asc': 'Release Date ▲',
-  'primary_release_date.desc': 'Release Date ▼',
-};
+import HeroSection from '@/components/organisms/heroSection/HeroSection';
+import MovieListSection from '@/components/organisms/movieListSection/MovieListSection';
 
 export default function Home() {
   const router = useRouter();
-  const genres = useGenresStore((state) => state.genres);
 
   const [trendingMovies, setTrendingMovies] = useState<MovieList | null>(null);
   const [genreMovies, setGenreMovies] = useState<Record<string, MovieList>>({});
@@ -127,101 +96,27 @@ export default function Home() {
 
   return (
     <>
-      <Container
-        maxWidth={false}
-        className="grid min-h-svh content-between py-10"
-      >
-        <div className="mx-auto">
-          <p className="text-2xl md:text-6xl font-thin">
-            Searching for something to watch?
-          </p>
-          <p className="text-3xl md:text-7xl font-light text-primary">
-            We got you.
-          </p>
-          <p className="max-w-10/12 mt-4 font-extralight text-balance">
-            Explore a world of cinema with{' '}
-            <span className="font-normal">MovieGo</span>. Whether you're in the
-            mood for action, comedy, or drama, we've got you covered with a
-            variety of options.
-          </p>
-        </div>
+      <HeroSection
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+        selectedSort={selectedSort}
+        setSelectedSort={setSelectedSort}
+        handleDiscover={handleDiscover}
+        handleFeelingLucky={handleFeelingLucky}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearch={handleSearch}
+        trendingMovies={trendingMovies?.results.slice(0, 3)}
+        loading={loading}
+      />
 
-        <SearchBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          handleSearch={handleSearch}
-        />
-
-        <Container className="flex flex-col">
-          <div className="md:flex justify-center">
-            <SelectComponent
-              data={genres}
-              selectedData={selectedGenres}
-              setSelectedData={setSelectedGenres}
-            />
-            <SelectComponent
-              data={sortingData}
-              selectedData={selectedSort}
-              setSelectedData={setSelectedSort}
-              singleSelect
-            />
-          </div>
-
-          <div className="flex justify-center gap-4">
-            <PrimaryButton onClick={handleDiscover}>
-              Discover Movies
-            </PrimaryButton>
-            <SecondaryButton onClick={handleFeelingLucky}>
-              Feeling Lucky?
-            </SecondaryButton>
-          </div>
-        </Container>
-
-        {loading ? (
-          <div className="flex justify-center my-8">
-            <LoadingMovieBanners />
-          </div>
-        ) : (
-          <Suspense fallback={<LoadingMovieBanners />}>
-            {trendingMovies && (
-              <MovieBanners movies={trendingMovies.results.slice(0, 3)} />
-            )}
-          </Suspense>
-        )}
-      </Container>
-
-      {loading ? (
-        <div className="flex justify-center my-8">
-          <LoadingBar />
-        </div>
-      ) : (
-        <>
-          {searchResults ? (
-            <ListedMovies
-              movies={searchResults.results}
-              searchResult={searchedFor}
-            />
-          ) : (
-            <>
-              {Object.entries(genreMovies).map(([genreId, movies]) => (
-                <MovieCarousel
-                  movies={movies.results}
-                  genre_id={Number(genreId)}
-                />
-              ))}
-
-              {Object.keys(genreMovies).length === 0 &&
-                !searchResults &&
-                trendingMovies && (
-                  <MovieCarousel
-                    genre_id={-1}
-                    movies={trendingMovies.results.slice(3)}
-                  />
-                )}
-            </>
-          )}
-        </>
-      )}
+      <MovieListSection
+        loading={loading}
+        searchedFor={searchedFor}
+        searchResults={searchResults}
+        genreMovies={genreMovies}
+        trendingMovies={trendingMovies}
+      />
     </>
   );
 }

@@ -23,7 +23,7 @@ const ListedMovies = ({ movies, searchResult }: ListedMoviesProps) => {
     <div className="flex flex-col justify-center mt-16">
       <div className="w-10/12 mx-auto max-w-512">
         <p className="text-3xl mb-10 w-fit underline font-extralight">
-          {searchResult}
+          Results for: {searchResult}
         </p>
       </div>
 
