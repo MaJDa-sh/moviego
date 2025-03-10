@@ -14,6 +14,37 @@ const theme = createTheme({
       fontWeight: 600,
     },
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white',
+          },
+        },
+        input: {
+          color: 'white',
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          color: 'white',
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          color: 'white',
+        },
+      },
+    },
+  },
 });
 
 const ThemeProviderWrapper = ({ children }: { children: React.ReactNode }) => {

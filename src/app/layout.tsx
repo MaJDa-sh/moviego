@@ -33,7 +33,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>MovieGo</title>
       </head>
-      <body className="antialiased">
+      <body className="antialiased pb-16">
         <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
       </body>
     </html>

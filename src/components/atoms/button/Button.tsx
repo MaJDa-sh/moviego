@@ -14,8 +14,10 @@ const PrimaryButton = ({ children, onClick, href }: ButtonProps) => {
     <Button
       sx={{
         borderRadius: 20,
-        px: 2,
-        py: 1,
+        px: { xs: 1, sm: 2 },
+        py: { xs: 0.5, sm: 1 },
+        fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        minWidth: { xs: '100px', sm: '130px', md: '160px' },
       }}
       variant="contained"
       color="primary"
@@ -37,8 +39,10 @@ const SecondaryButton = ({ children, onClick, href }: ButtonProps) => {
       sx={{
         borderWidth: 2,
         borderRadius: 20,
-        px: 2,
-        py: 1,
+        px: { xs: 1, sm: 2 },
+        py: { xs: 0.5, sm: 1 },
+        fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        minWidth: { xs: '100px', sm: '130px', md: '160px' },
       }}
     >
       {children}

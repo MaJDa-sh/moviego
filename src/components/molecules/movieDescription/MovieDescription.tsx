@@ -47,7 +47,7 @@ const MovieDescription = ({
               {genre.name}
             </span>
           ))}{' '}
-          <span>
+          <span className="block md:flex pt-2">
             {Math.floor(runtime / 60)}h {runtime % 60}m
           </span>
         </p>
