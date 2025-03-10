@@ -3,6 +3,9 @@ import MovieDescription from '@/components/molecules/movieDescription/MovieDescr
 import MovieHeader from '@/components/molecules/movieHeader/MovieHeader';
 import { MovieDetails } from '@/types/movie';
 import { redirect } from 'next/navigation';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { PrimaryButton } from '@/components/atoms/button/Button';
+import { Button, Container } from '@mui/material';
 
 export default async function MoviePage({
   params,
@@ -32,6 +35,14 @@ export default async function MoviePage({
             poster_path={movieData.poster_path}
           />
         </MovieHeader>
+        <Container className="mt-4">
+          <PrimaryButton href="/">
+            <>
+              <ArrowBackIosNewIcon />
+              Home
+            </>
+          </PrimaryButton>
+        </Container>
       </div>
     );
   } catch (error) {
