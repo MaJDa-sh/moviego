@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MovieList } from '@/types/movie';
+import { Movie, MovieDetails, MovieList } from '@/types/movie';
 
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
@@ -45,7 +45,26 @@ export const searchMovies = async (query: string): Promise<MovieList> => {
   return data;
 };
 
-export const getMovie = async (id: number): Promise<MovieList> => {
-  const { data } = await axiosInstance.get(`/movie${id}`);
+export const getMovie = async (id: number): Promise<MovieDetails> => {
+  const { data } = await axiosInstance.get(`/movie/${id}`);
   return data;
+};
+
+export const randomMovie = (callback: Function) => {
+  axiosInstance
+    .get('/discover/movie', {
+      params: {
+        language: 'en-US',
+        page: Math.round(Math.random() * 50),
+        sort_by: 'popularity.desc',
+      },
+    })
+    .then((res) => {
+      const results = res.data.results;
+      const randomIndex = Math.round(Math.random() * (results.length - 1));
+      callback(results[randomIndex].id);
+    })
+    .catch((error) => {
+      console.error('Error fetching random movie:', error);
+    });
 };

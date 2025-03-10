@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import { Container } from '@mui/material';
 import {
   getTrendingMovies,
@@ -41,6 +42,7 @@ const sortingData = {
 };
 
 export default function Home() {
+  const router = useRouter();
   const genres = useGenresStore((state) => state.genres);
 
   const [trendingMovies, setTrendingMovies] = useState<MovieList | null>(null);
@@ -113,6 +115,16 @@ export default function Home() {
     }
   };
 
+  const handleFeelingLucky = () => {
+    if (trendingMovies && trendingMovies.results.length > 0) {
+      const randomMovie =
+        trendingMovies.results[
+          Math.floor(Math.random() * trendingMovies.results.length)
+        ];
+      router.push(`/movie/${randomMovie.id}`);
+    }
+  };
+
   return (
     <>
       <Container
@@ -159,7 +171,7 @@ export default function Home() {
             <PrimaryButton onClick={handleDiscover}>
               Discover Movies
             </PrimaryButton>
-            <SecondaryButton onClick={handleDiscover}>
+            <SecondaryButton onClick={handleFeelingLucky}>
               Feeling Lucky?
             </SecondaryButton>
           </div>

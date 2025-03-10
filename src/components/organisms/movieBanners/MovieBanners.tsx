@@ -1,3 +1,5 @@
+'use client';
+
 import { Container } from '@mui/material';
 import MovieBanner from '@/components/molecules/movieBanner/MovieBanner';
 import { Movie } from '@/types/movie';
@@ -33,7 +35,7 @@ const MovieBanners = ({ movies }: MovieBannersProps) => {
       />
       <MovieBanner
         onClick={() => {
-          router.push(`/movie/${movies[0].id}`);
+          router.push(`/movie/${movies[1].id}`);
         }}
         className="translate-y-0 
                   lg:translate-y-8 
@@ -45,7 +47,7 @@ const MovieBanners = ({ movies }: MovieBannersProps) => {
       />
       <MovieBanner
         onClick={() => {
-          router.push(`/movie/${movies[0].id}`);
+          router.push(`/movie/${movies[2].id}`);
         }}
         className="md:-skew-y-6"
         img={`https://image.tmdb.org/t/p/w1280_and_h720_face/${movies[2].backdrop_path}`}

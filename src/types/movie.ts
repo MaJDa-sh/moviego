@@ -16,6 +16,22 @@ export interface Movie {
   vote_count: number;
 }
 
+export interface MovieDetails {
+  backdrop_path: string;
+  genres: Genre[];
+  homepage: string;
+  id: number;
+  original_language: string;
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  runtime: number;
+  tagline: string;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+}
+
 export interface MovieList {
   page: number;
   results: Movie[];
