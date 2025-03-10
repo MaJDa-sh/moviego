@@ -21,6 +21,7 @@ const SearchBar = ({
         type="search"
         variant="filled"
         color="primary"
+        value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         InputProps={{
           style: { color: 'white', maxWidth: '25rem', width: '50vw' },

@@ -1,5 +1,5 @@
 import StarRating from '@/components/atoms/starRating/StarRating';
-import { Container, Rating } from '@mui/material';
+import { Container } from '@mui/material';
 import { MouseEventHandler } from 'react';
 
 interface MovieBannerProps {

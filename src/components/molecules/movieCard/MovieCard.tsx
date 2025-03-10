@@ -1,6 +1,5 @@
 import StarRating from '@/components/atoms/starRating/StarRating';
 import { useGenresStore } from '@/store/useGenresStore';
-import { Rating } from '@mui/material';
 import { useState, useEffect, useRef, MouseEventHandler } from 'react';
 
 interface MovieCardProps {
@@ -25,6 +24,8 @@ const LazyMovieCard = ({
   const cardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const currentCardRef = cardRef.current;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,13 +35,13 @@ const LazyMovieCard = ({
       { threshold: 0.1 },
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (currentCardRef) {
+      observer.observe(currentCardRef);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (currentCardRef) {
+        observer.unobserve(currentCardRef);
       }
     };
   }, []);

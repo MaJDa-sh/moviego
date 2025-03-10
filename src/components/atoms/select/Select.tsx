@@ -9,6 +9,7 @@ import {
   MenuItem,
   Select,
   OutlinedInput,
+  SelectChangeEvent,
 } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
@@ -34,15 +35,14 @@ export default function SelectComponent<T extends string | string[]>({
   setSelectedData,
   singleSelect = false,
 }: SelectComponentProps<T>) {
-  const handleChange = (event: any) => {
+  const handleChange = (event: SelectChangeEvent<T>) => {
     const { value } = event.target;
-    setSelectedData(
-      singleSelect
-        ? (value as string)
-        : typeof value === 'string'
-        ? value.split(',')
-        : value,
-    );
+
+    if (!singleSelect) {
+      setSelectedData(value as T);
+    } else {
+      setSelectedData(value as T);
+    }
   };
 
   return (

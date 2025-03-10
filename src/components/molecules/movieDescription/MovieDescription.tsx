@@ -2,7 +2,7 @@
 
 import StarRating from '@/components/atoms/starRating/StarRating';
 import { Genre } from '@/types/movie';
-import { Container, Rating } from '@mui/material';
+import { Container } from '@mui/material';
 
 interface MovieDescriptionParams {
   title: string;

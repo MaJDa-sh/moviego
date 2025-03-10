@@ -5,16 +5,15 @@ import { MovieDetails } from '@/types/movie';
 import { redirect } from 'next/navigation';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { PrimaryButton } from '@/components/atoms/button/Button';
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 
 export default async function MoviePage({
   params,
 }: {
-  params: { id: number };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = params;
-
   try {
+    const { id } = await params;
     const movieData: MovieDetails = await getMovie(id);
 
     if (!movieData) {

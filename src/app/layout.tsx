@@ -3,14 +3,8 @@
 import { ThemeProviderWrapper } from '@/components/atoms/ThemeProviderWrapper/ThemeProviderWrapper';
 import './globals.scss';
 import './globals.css';
-import { Inter } from 'next/font/google';
 import { useGenresStore } from '@/store/useGenresStore';
 import { useEffect } from 'react';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
 
 export default function RootLayout({
   children,

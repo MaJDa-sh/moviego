@@ -43,11 +43,9 @@ const MovieCarousel = ({ movies, genre_id }: MovieCarouselProps) => {
   const genres = useGenresStore((state) => state.genres);
   const router = useRouter();
   const [startX, setStartX] = useState(0);
-  const [endX, setEndX] = useState(0);
 
   const handleMouseDown = (e: React.MouseEvent) => setStartX(e.clientX);
   const handleMouseUp = (e: React.MouseEvent, movieId: number) => {
-    setEndX(e.clientX);
     if (Math.abs(startX - e.clientX) < 10) {
       router.push(`/movie/${movieId}`);
     }
