@@ -1,12 +1,14 @@
 'use client';
 
 import { Button } from '@mui/material';
+import { MouseEventHandler } from 'react';
 
 interface ButtonProps {
   children: string;
+  onClick: MouseEventHandler<HTMLAnchorElement>;
 }
 
-const PrimaryButton = ({ children }: ButtonProps) => {
+const PrimaryButton = ({ children, onClick }: ButtonProps) => {
   return (
     <Button
       sx={{
@@ -16,17 +18,21 @@ const PrimaryButton = ({ children }: ButtonProps) => {
       }}
       variant="contained"
       color="primary"
+      href="#"
+      onClick={onClick}
     >
       {children}
     </Button>
   );
 };
 
-const SecondaryButton = ({ children }: ButtonProps) => {
+const SecondaryButton = ({ children, onClick }: ButtonProps) => {
   return (
     <Button
       variant="outlined"
       color="primary"
+      href="#"
+      onClick={onClick}
       sx={{
         borderWidth: 2,
         borderRadius: 20,

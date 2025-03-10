@@ -4,44 +4,51 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import MovieCard from '@/components/molecules/movieCard/MovieCard';
 import { Movie } from '@/types/movie';
+import { useGenresStore } from '@/store/useGenresStore';
 
 interface MovieCarouselProps {
   movies: Movie[];
+  genre_id: number;
 }
 
-const MovieCarousel = ({ movies }: MovieCarouselProps) => {
-  const responsive = {
-    xxl: {
-      breakpoint: { max: 4000, min: 1536 },
-      partialVisibilityGutter: 30,
-      items: 4,
-    },
-    xl: {
-      breakpoint: { max: 1536, min: 1280 },
-      partialVisibilityGutter: 40,
-      items: 3,
-    },
-    lg: {
-      breakpoint: { max: 1280, min: 1024 },
-      partialVisibilityGutter: 40,
-      items: 2,
-    },
-    md: {
-      breakpoint: { max: 1024, min: 768 },
-      partialVisibilityGutter: 50,
-      items: 2,
-    },
-    sm: {
-      breakpoint: { max: 768, min: 0 },
-      partialVisibilityGutter: 10,
-      items: 1,
-    },
-  };
+const responsive = {
+  xxl: {
+    breakpoint: { max: 4000, min: 1536 },
+    partialVisibilityGutter: 30,
+    items: 4,
+  },
+  xl: {
+    breakpoint: { max: 1536, min: 1280 },
+    partialVisibilityGutter: 40,
+    items: 3,
+  },
+  lg: {
+    breakpoint: { max: 1280, min: 1024 },
+    partialVisibilityGutter: 40,
+    items: 2,
+  },
+  md: {
+    breakpoint: { max: 1024, min: 768 },
+    partialVisibilityGutter: 50,
+    items: 2,
+  },
+  sm: {
+    breakpoint: { max: 768, min: 0 },
+    partialVisibilityGutter: 10,
+    items: 1,
+  },
+};
+
+const MovieCarousel = ({ movies, genre_id }: MovieCarouselProps) => {
+  const genres = useGenresStore((state) => state.genres);
+
+  const genre = genres[genre_id];
+
   return (
     <div className="flex flex-col justify-center mt-16">
       <div className="w-10/12 mx-auto max-w-512">
         <p className="text-3xl mb-10 w-fit underline font-extralight">
-          Popular
+          {genre || 'Popular'}
         </p>
       </div>
 

@@ -2,7 +2,7 @@ import { Container, Rating } from '@mui/material';
 
 interface MovieBannerProps {
   className?: string;
-  img: string;
+  img?: string;
   title: string;
   vote_average: number;
 }

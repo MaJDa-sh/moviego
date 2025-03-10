@@ -29,7 +29,7 @@ const MovieBanners = ({ movies }: MovieBannersProps) => {
       <MovieBanner
         className="translate-y-0 
                   lg:translate-y-8 
-                  md:skew-y-3 
+                  md:skew-y-6 
                   lg:skew-y-0"
         img={`https://image.tmdb.org/t/p/w1280_and_h720_face/${movies[1].backdrop_path}`}
         title={movies[1].title}
